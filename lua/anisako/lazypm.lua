@@ -15,6 +15,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local gitplugins = require("anisako.git.setup")
+local telescopefzfplugin = require('anisako.telescope.setup')
+local treesitterplugin = require('anisako.treesitter.setup')
+
 -- note: here is where you install your plugins.
 --  you can configure plugins using the `config` key.
 --
@@ -24,8 +28,9 @@ require('lazy').setup({
   -- note: first, some plugins that don't require any configuration
 
   -- git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  -- {'tpope/vim-fugitive'},
+  -- {'tpope/vim-rhubarb'},
+  gitplugins,
 
   -- detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -106,34 +111,10 @@ require('lazy').setup({
   { 'numtostr/comment.nvim', opts = {} },
 
   -- fuzzy finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- fuzzy finder algorithm which requires local dependencies to be built.
-      -- only load if `make` is available. make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- note: if you are having trouble with this installation,
-        --       refer to the readme for telescope-fzf-native for more instructions.
-        build = 'cmake',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-    },
-  },
+  telescopefzfplugin,
 
-  {
-    -- highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':tsupdate',
-  },
+  -- highlight, edit, and navigate code
+  treesitterplugin,
 
   -- flutter tools 
   {
