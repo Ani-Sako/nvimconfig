@@ -1,11 +1,11 @@
-vim.g.mapleader = ' ' 
-vim.g.maplocalleader = ' '
-
 vim.o.shell = vim.fn.executable('pwsh') and 'pwsh' or 'powershell'
+
+require('anisako')
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
+
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -19,61 +19,61 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
+-- note: here is where you install your plugins.
+--  you can configure plugins using the `config` key.
 --
---  You can also configure plugins after the setup call,
+--  you can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- NOTE: First, some plugins that don't require any configuration
+  -- note: first, some plugins that don't require any configuration
 
-  -- Git related plugins
+  -- git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  -- Detect tabstop and shiftwidth automatically
+  -- detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  -- note: this is where your plugins related to lsp can be installed.
+  --  the configuration is done below. search for lspconfig to find it below.
   {
-    -- LSP Configuration & Plugins
+    -- lsp configuration & plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
+      -- automatically install lsps to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      -- useful status updates for lsp
+      -- note: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
-      -- Additional lua configuration, makes nvim stuff amazing!
+      -- additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
   },
 
   {
-    -- Autocompletion
+    -- autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
+      -- snippet engine & its associated nvim-cmp source
+      'l3mon4d3/luasnip',
       'saadparwaiz1/cmp_luasnip',
 
-      -- Adds LSP completion capabilities
+      -- adds lsp completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
-      -- Adds a number of user-friendly snippets
+      -- adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
     },
   },
 
-  -- Useful plugin to show you pending keybinds.
+  -- useful plugin to show you pending keybinds.
   --{ 'folke/which-key.nvim', opts = {} },
 
   {
-    -- Theme inspired by Atom
+    -- theme inspired by atom
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
@@ -82,9 +82,9 @@ require('lazy').setup({
   },
 
   {
-    -- Set lualine as statusline
+    -- set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
+    -- see `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = false,
@@ -96,10 +96,10 @@ require('lazy').setup({
   },
 
   {
-    -- Add indentation guides even on blank lines
+    -- add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    -- enable `lukas-reineke/indent-blankline.nvim`
+    -- see `:help indent_blankline.txt`
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
@@ -107,21 +107,21 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numtostr/comment.nvim', opts = {} },
 
-  -- Fuzzy Finder (files, lsp, etc)
+  -- fuzzy finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
+      -- fuzzy finder algorithm which requires local dependencies to be built.
+      -- only load if `make` is available. make sure you have the system
       -- requirements installed.
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
+        -- note: if you are having trouble with this installation,
+        --       refer to the readme for telescope-fzf-native for more instructions.
         build = 'cmake',
         cond = function()
           return vim.fn.executable 'make' == 1
@@ -131,15 +131,15 @@ require('lazy').setup({
   },
 
   {
-    -- Highlight, edit, and navigate code
+    -- highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    build = ':TSUpdate',
+    build = ':tsupdate',
   },
 
-  -- Flutter tools 
+  -- flutter tools 
   {
 	  'akinsho/flutter-tools.nvim',
 	  lazy = false,
@@ -150,40 +150,39 @@ require('lazy').setup({
 	  config = true,
   },
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
+  -- note: next step on your neovim journey: add/configure additional "plugins" for kickstart
+  --       these are some example plugins that i've included in the kickstart repository.
+  --       uncomment any of the lines below to enable them.
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
+  -- note: the import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+  --    you can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+  --    uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+  --    for additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 }, {})
+-- [[ setting options ]]
+-- see `:help vim.o`
+-- note: you can change these options as you wish!
 
--- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
-
--- Set highlight on search
+-- set highlight on search
 vim.o.hlsearch = false
 
--- Make line numbers default
+-- make line numbers default
 --vim.wo.number = true
 
--- Enable mouse mode
+-- enable mouse mode
 --vim.o.mouse = 'a'
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- sync clipboard between os and neovim.
+--  remove this option if you want your os clipboard to remain independent.
+--  see `:help 'clipboard'`
 --vim.o.clipboard = 'unnamedplus'
 
--- Enable break indent
+-- enable break indent
 vim.o.breakindent = true
 
 -- Save undo history
@@ -498,24 +497,3 @@ require('lualine').setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
-vim.opt.scrolloff = 8
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
-vim.keymap.set("x", "<leader>p", "\"_dP")
-
--- make the window biger vertically
-vim.keymap.set("n", "<C-]>", [[<cmd>vertical resize +5<cr>]])
--- make the window smaller vertically
-vim.keymap.set("n", "<C-[>", [[<cmd>vertical resize -5<cr>]])
---
--- -- make the window bigger horizontally by pressing shift and =
--- vim.keymap.set("n", "<C-l>,", [[<cmd>horizontal resize +2<cr>]])
--- -- make the window smaller horizontally by pressing shift and -
--- vim.keymap.set("n", "<C-h>.", [[<cmd>horizontal resize -2<cr>]])
