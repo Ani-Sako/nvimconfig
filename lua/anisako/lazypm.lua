@@ -18,6 +18,12 @@ vim.opt.rtp:prepend(lazypath)
 local gitplugins = require("anisako.git.setup")
 local telescopefzfplugin = require('anisako.telescope.setup')
 local treesitterplugin = require('anisako.treesitter.setup')
+local lspconfigplugin = require("anisako.lsp.setup")
+local cmpplugin = require("anisako.cmp.setup")
+local themeplugin = require("anisako.onedark.setup")
+local lualineplugin = require("anisako.lualine.setup")
+local formattingplugins = require("anisako.formatting.setup")
+local fluttertoolsPlugin = require("anisako.flutter-tools.setup")
 
 -- note: here is where you install your plugins.
 --  you can configure plugins using the `config` key.
@@ -25,90 +31,24 @@ local treesitterplugin = require('anisako.treesitter.setup')
 --  you can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  -- note: first, some plugins that don't require any configuration
-
   -- git related plugins
-  -- {'tpope/vim-fugitive'},
-  -- {'tpope/vim-rhubarb'},
   gitplugins,
-
-  -- detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
 
   -- note: this is where your plugins related to lsp can be installed.
   --  the configuration is done below. search for lspconfig to find it below.
-  {
-    -- lsp configuration & plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- automatically install lsps to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
+  lspconfigplugin,
 
-      -- useful status updates for lsp
-      -- note: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
-
-      -- additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
-    },
-  },
-
-  {
-    -- autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- snippet engine & its associated nvim-cmp source
-      'l3mon4d3/luasnip',
-      'saadparwaiz1/cmp_luasnip',
-
-      -- adds lsp completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-
-      -- adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-    },
-  },
+  -- autocompletion
+  cmpplugin,
 
   -- useful plugin to show you pending keybinds.
   --{ 'folke/which-key.nvim', opts = {} },
 
-  {
-    -- theme inspired by atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
+  -- theme inspired by atom
+  themeplugin,
 
-  {
-    -- set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- see `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'molokai',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
-
-  {
-    -- add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- enable `lukas-reineke/indent-blankline.nvim`
-    -- see `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
-  },
-
-  -- "gc" to comment visual regions/lines
-  { 'numtostr/comment.nvim', opts = {} },
+  -- lualine status line
+  lualineplugin,
 
   -- fuzzy finder (files, lsp, etc)
   telescopefzfplugin,
@@ -116,16 +56,13 @@ require('lazy').setup({
   -- highlight, edit, and navigate code
   treesitterplugin,
 
+  -- formatting plugins
+  formattingplugins,
+
   -- flutter tools 
-  {
-	  'akinsho/flutter-tools.nvim',
-	  lazy = false,
-	  dependencies = {
-		  'nvim-lua/plenary.nvim',
-		  'stevearc/dressing.nvim', -- optional for vim.ui.select
-	  },
-	  config = true,
-  },
+  fluttertoolsPlugin,
+
+}, {})
 
   -- note: next step on your neovim journey: add/configure additional "plugins" for kickstart
   --       these are some example plugins that i've included in the kickstart repository.
@@ -140,4 +77,3 @@ require('lazy').setup({
   --
   --    for additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
-}, {})
