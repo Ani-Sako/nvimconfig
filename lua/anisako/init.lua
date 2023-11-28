@@ -9,4 +9,3 @@ require('anisako.lazypm')
 
 require('anisako.telescope.settings')
 require('anisako.treesitter.settings')
-require('anisako.neodev')
