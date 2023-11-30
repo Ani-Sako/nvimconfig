@@ -98,3 +98,8 @@ mason_lspconfig.setup_handlers {
     }
   end
 }
+
+return {
+  onattach = on_attach,
+  capabilities = capabilities
+}
