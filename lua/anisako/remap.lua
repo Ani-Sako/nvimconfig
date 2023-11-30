@@ -28,3 +28,6 @@ vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "<C-]>", [[<cmd>vertical resize +5<cr>]])
 -- decrease current window width
 vim.keymap.set("n", "<C-[>", [[<cmd>vertical resize -5<cr>]])
+
+-- Create vsplit
+vim.keymap.set("n", "<leader>v", [[<cmd>vsplit<cr>]])
