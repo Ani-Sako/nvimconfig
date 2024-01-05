@@ -5,6 +5,8 @@ vim.diagnostic.config ({
 -- Remap to show line diagnostics
 vim.keymap.set('n', '<leader>e', function() vim.diagnostic.open_float(nil, {focus=false}) end)
 
+vim.keymap.set('n', '<leader>en', function() vim.diagnostic.goto_next(nil) end)
+-- vim.keymap.set('n', '<leader>e', function() vim.diagnostic.goto_prev(nil, {focus=false}) end)
 -- Todo: remaps for next and previous diagnostic error (vim diagnostic.goto_next)
 
 -- -- Show line diagnostics automatically in hover window
