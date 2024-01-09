@@ -31,3 +31,15 @@ vim.keymap.set("n", "<C-h>", [[<cmd>vertical resize -5<cr>]])
 
 -- Create vsplit
 vim.keymap.set("n", "<leader>v", [[<cmd>vsplit<cr>]])
+
+-- Convenient mappings minimizing emacs pinky
+-- git fugitive
+vim.keymap.set("n", "<leader>g", ":G ")
+
+-- write file
+vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
+
+-- escape
+local escapeString = "kj"
+vim.keymap.set("!", escapeString, "<ESC>")
+vim.keymap.set("v", escapeString, "<ESC>")
