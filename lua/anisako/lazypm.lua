@@ -15,5 +15,5 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---    for additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+-- for additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
 require("lazy").setup("anisako.plugins")

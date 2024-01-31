@@ -21,5 +21,8 @@ require("anisako.indent-blankline.iblconfig")
 require("anisako.onedark.onedarkconfig")
 require("anisako.lualine.lualineconfig")
 
+print("setup undotree")
+require("anisako.undotree.config")
+
 -- Flutter tools config
 require("anisako.flutter-tools.config")
