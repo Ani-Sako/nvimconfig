@@ -35,10 +35,11 @@ vim.keymap.set("n", "<leader>v", [[<cmd>vsplit<cr>]])
 -- Convenient mappings minimizing emacs pinky
 -- git fugitive
 vim.keymap.set("n", "<leader>g", ":G ")
+vim.keymap.set("n", "<leader>gl", ":vertical :G log --decorate --all <CR>")
 -- write file
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 
 -- Move selected code 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<C-k>", ":m '>-2<CR>gv=gv")
 
