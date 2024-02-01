@@ -1,3 +1,7 @@
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 8
+
 -- enable break indent
 vim.o.breakindent = true
 
@@ -12,7 +16,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 150
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
@@ -21,6 +25,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.o.wrap = false
+
+vim.o.colorcolumn = "80"
 
 -- enable mouse mode
 --vim.o.mouse = 'a'
