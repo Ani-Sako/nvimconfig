@@ -27,7 +27,7 @@ vim.o.termguicolors = true
 
 vim.o.wrap = false
 
-vim.o.colorcolumn = "80"
+-- vim.o.colorcolumn = "80"
 
 -- enable mouse mode
 --vim.o.mouse = 'a'
