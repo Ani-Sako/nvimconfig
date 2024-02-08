@@ -108,10 +108,5 @@ return
           }
         end
       }
-
-      return {
-        onattach = on_attach,
-        capabilities = capabilities
-      }
     end,
   }
