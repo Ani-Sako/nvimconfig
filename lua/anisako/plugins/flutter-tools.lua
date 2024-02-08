@@ -6,5 +6,16 @@ return
 		  'nvim-lua/plenary.nvim',
 		  'stevearc/dressing.nvim', -- optional for vim.ui.select
 	  },
-	  config = true,
+	  config = function ()
+			-- local lspconfigSettings = require("anisako.lsp.lspconfig")
+			require("flutter-tools").setup {
+				lsp = {
+					color = {
+						enabled = true,
+					},
+					on_attach = onattach,
+					capabilities = capabilities,
+				},
+			}
+	  end,
   }

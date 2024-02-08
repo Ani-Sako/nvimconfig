@@ -1,26 +1,20 @@
 print("Allo Chonker")
 
--- Vim settings
 require('anisako.remap')
 require('anisako.settings')
 
--- Lazy package manager
-require('anisako.lazypm')
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  }
+end
+vim.opt.rtp:prepend(lazypath)
 
-require('anisako.telescope.config')
-require('anisako.treesitter.config')
+require("lazy").setup("anisako.plugins")
 
--- LSP and completion configs and setup
-require("anisako.lsp.lspconfig")
-require("anisako.cmp.cmpconfig")
-
-require("anisako.indent-blankline.iblconfig")
-
--- Theme (onedark) and statusline (lualine) configs
-require("anisako.onedark.onedarkconfig")
-require("anisako.lualine.lualineconfig")
-
-require("anisako.undotree.config")
-
--- Flutter tools config
-require("anisako.flutter-tools.config")
