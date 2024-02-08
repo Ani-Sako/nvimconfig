@@ -3,7 +3,6 @@ print("Allo Chonker")
 -- Vim settings
 require('anisako.remap')
 require('anisako.settings')
-require('anisako.diagnostics')
 
 -- Lazy package manager
 require('anisako.lazypm')
