@@ -1,3 +1,10 @@
+return {
+  "EdenEast/nightfox.nvim",
+  config = function ()
+    vim.cmd("colorscheme carbonfox")
+  end
+}
+
 -- return
 --   {
 --     'navarasu/onedark.nvim',
@@ -10,11 +17,3 @@
 --       require('onedark').load()
 --     end,
 --   }
-
-return 
-  { 
-    "EdenEast/nightfox.nvim", 
-    config = function ()
-      vim.cmd("colorscheme carbonfox")
-    end
-  } 

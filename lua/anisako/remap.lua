@@ -35,7 +35,7 @@ vim.keymap.set("n", "<leader>v", [[<cmd>vsplit<cr>]])
 -- Convenient mappings minimizing emacs pinky
 -- git fugitive
 vim.keymap.set("n", "<leader>g", ":G ")
-vim.keymap.set("n", "<leader>gl", ":vertical :G log --decorate --all <CR>")
+vim.keymap.set("n", "<leader>gl", ":vertical :G log --decorate --all --graph <CR>")
 -- write file
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>")
 

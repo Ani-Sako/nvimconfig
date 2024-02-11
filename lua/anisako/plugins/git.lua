@@ -1,1 +1,1 @@
-return {{'tpope/vim-fugitive',},{'tpope/vim-rhubarb'}}
+return {{'tpope/vim-fugitive',}}
