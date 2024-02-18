@@ -26,7 +26,8 @@ return {
     require("rose-pine").setup({
       variant = "main",
       styles = {
-        transparency = true;
+        italic = false,
+        transparency = true,
       },
     })
     vim.cmd("colorscheme rose-pine-main")
