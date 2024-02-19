@@ -1,12 +1,13 @@
 return
-  {
-	  'akinsho/flutter-tools.nvim',
-	  lazy = false,
-	  dependencies = {
-		  'nvim-lua/plenary.nvim',
-		  'stevearc/dressing.nvim', -- optional for vim.ui.select
-	  },
-	  config = function ()
+	{
+		'akinsho/flutter-tools.nvim',
+		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+		enabled = (vim.loop.os_uname().sysname == "Windows_NT"),
+		config = function ()
 			require("flutter-tools").setup {
 				lsp = {
 					color = {
@@ -35,10 +36,10 @@ return
 
 						vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 							vim.lsp.buf.format()
-							end, { desc = 'Format current buffer with LSP' })
+						end, { desc = 'Format current buffer with LSP' })
 					end,
 					capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 				},
 			}
-	  end,
-  }
+		end,
+	}
