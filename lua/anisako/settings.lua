@@ -1,6 +1,8 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 12
+
+vim.opt.showmode = false
 
 -- enable break indent
 vim.o.breakindent = true
@@ -16,14 +18,14 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 150
+vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+-- vim.o.termguicolors = true
 
 vim.o.wrap = false
 
@@ -37,10 +39,11 @@ vim.o.swapfile = false
 -- sync clipboard between os and neovim.
 --  remove this option if you want your os clipboard to remain independent.
 --  see `:help 'clipboard'`
---vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = 'unnamedplus'
 
--- set highlight on search
-vim.o.hlsearch = false
+-- set highlight on search, clear on pressing esc
+vim.o.hlsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -57,19 +60,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.diagnostic.config ({
   virtual_text = false,
 })
-
 -- Remap to show line diagnostics
 vim.keymap.set('n', '<leader>e', function() vim.diagnostic.open_float(nil, {focus=false}) end)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-vim.keymap.set('n', '<leader>en', function() vim.diagnostic.goto_next(nil) end)
--- vim.keymap.set('n', '<leader>e', function() vim.diagnostic.goto_prev(nil, {focus=false}) end)
--- Todo: remaps for next and previous diagnostic error (vim diagnostic.goto_next)
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
 
--- -- Show line diagnostics automatically in hover window
--- vim.o.updatetime = 250
--- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
---   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
---   callback = function ()
---     vim.diagnostic.open_float(nil, {focus=false})
---   end
--- })
+-- Show which line your cursor is on
+vim.opt.cursorline = true
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '_' }
