@@ -27,7 +27,7 @@ return {
       variant = "main",
       styles = {
         italic = false,
-        transparency = true,
+        -- transparency = true,
       },
     })
     vim.cmd("colorscheme rose-pine-main")
