@@ -7,9 +7,10 @@ return
       require('lualine').setup({
         options = {
           icons_enabled = false,
-          theme = 'iceberg_dark',
+          theme = 'auto',
           component_separators = '|',
           section_separators = '',
+          globalstatus = true,
         },
       })
     end,
